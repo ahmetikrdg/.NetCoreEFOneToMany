@@ -27,12 +27,12 @@ namespace EFD
         }
     }
     public class User
-    {
+    {//one to many bir kullanıcının birden fazla adresi olabilir
         public int Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public List<Address> Addresses { get; set; }//elde ettiğim herhangi userin üzerinden adresses dediğim zaman adres bilgisi gelecek.bir userin birde nfazla adresi olabileceği için list
-
+                                                    //herhang bir kullanıcı üzerinden addreses dersem o kullanıcının adersi gelir
     }
 
 
@@ -43,9 +43,9 @@ namespace EFD
         public string Title { get; set; }
         public string Body { get; set; }
 
-        public User User { get; set; }//adresler tablosundaki her kayıt tek bir usere ait
+         public User User { get; set; }//user objesi oluşturdum.adresler tablosundaki her kayıt tek bir usere ait.bir user birine ait o yüzden user yukarıda list çünkü birden fazla adresi olabilir dedik
         public int UserId { get; set; }//eklemiş olduğum herhangi bir userin ıd bilgisini kullanarak gelip adres tablosuna bir kayırt ekleyebilirim
-        //murlaka bir userin ıdsi var demek int? yaparsan nulda olsa sıkıntı olmaz
+        //murlaka bir userin ıdsi var demek int? yaparsan nulda olsa sıkıntı olmaz//yabancı anahtar bu user
     }
     public class Product
     {
@@ -74,19 +74,21 @@ namespace EFD
         {
             //InsertUsers();
             //InsertAddresess();
+            //navigation property yapıcaz
+            //Navigation Properties: başka entity’ler ile olan ilişkiyi temsil eder. İki tipi vardır;
             using (var db = new ShopContext())
             {//user üzerinden adres ekleyeceğiz.İsmi şu olan kişi varsa şunları ekle
 
                 var user = db.Users.FirstOrDefault(i => i.Username == "Ahmet Karadağ");
                 if (user != null)
                 {
-                    user.Addresses = new List<Address>();
-                    user.Addresses.AddRange(
+                    user.Addresses = new List<Address>();//bunu yapmassak hata verir nul referance der bunu üretip sonra tamamız lazım bunun üzerine
+                    user.Addresses.AddRange(//navigation property
                 new List<Address>(){//addrange bu bilgileri liste halinde alacak
                 new Address(){Fullname="Ahmet Karadağ",Title="Ev Adresi 1",Body="İstanbul",UserId=1},
                 new Address(){Fullname="Ahmet Karadağ",Title="Ev Adresi 2",Body="İstanbul",UserId=1},
                 new Address(){Fullname="Ahmet Karadağ",Title="Ev Adresi 3",Body="İstanbul",UserId=1}});
-                db.SaveChanges();
+                    db.SaveChanges();
                 }
             }
         }
