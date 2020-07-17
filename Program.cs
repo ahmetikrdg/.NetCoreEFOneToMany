@@ -7,8 +7,6 @@ using Microsoft.Extensions.Logging;
 namespace EFD
 {
 
-
-
     public class ShopContext : DbContext
     {
 
@@ -92,16 +90,13 @@ namespace EFD
                 }
             }
         }
-
         static void InsertUsers()
         {
             var users = new List<User>(){
                 new User(){Username="Ahmet Karadağ",Email="ahmetikrdg@outlook.com"},
-                                new User(){Username="Yiğit Bilge",Email="yigitbilge@outlook.com"},
+                new User(){Username="Yiğit Bilge",Email="yigitbilge@outlook.com"},
                 new User(){Username="Ali Çelik",Email="celikali@outlook.com"},
-                                new User(){Username="Mehmet Güz",Email="cmet@outlook.com"}
-
-
+                new User(){Username="Mehmet Güz",Email="cmet@outlook.com"}
             };
             using (var db = new ShopContext())
             {
@@ -118,8 +113,6 @@ namespace EFD
                                 new Address(){Fullname="Ali Çelik",Title="İş Adresi",Body="İstanbul",UserId=3},
                                 new Address(){Fullname="Mehmet Güz",Title="İş Adresi",Body="İstanbul",UserId=4},
                                 new Address(){Fullname="Mehmet Güz",Title="Ev Adresi",Body="İstanbul",UserId=4}
-
-
             };
             using (var db = new ShopContext())
             {
@@ -127,9 +120,6 @@ namespace EFD
                 db.SaveChanges();
             }
         }
-
-
-
     }
 }
 
