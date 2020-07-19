@@ -31,6 +31,7 @@ namespace EFD
         public string Email { get; set; }
         public List<Address> Addresses { get; set; }//elde ettiğim herhangi userin üzerinden adresses dediğim zaman adres bilgisi gelecek.bir userin birde nfazla adresi olabileceği için list
                                                     //herhang bir kullanıcı üzerinden addreses dersem o kullanıcının adersi gelir
+        //bir kullanıcının birden fazla adresi olabilir. Birkaç tane adres yanlızca bir usere ait olmalı.
     }
 
 
